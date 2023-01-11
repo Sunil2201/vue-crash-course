@@ -1,15 +1,20 @@
 <template>
     <div :key="task.id" v-for="task in tasks">
-        <h3>{{task.text}}</h3>
+        <Task @delete-task="$emit('delete-task', task.id)" :task="task"/>
     </div>
 </template>
 
 
 <script>
+import Task from "./Task.vue"
 export default {
     name: 'Tasks',
+    components: {
+        Task
+    },
     props: {
-        tasks: []
-    }
+        tasks: Array
+    },
+    emits: ['delete-task'],
 }
 </script>
